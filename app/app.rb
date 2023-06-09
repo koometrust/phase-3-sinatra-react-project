@@ -74,3 +74,6 @@ class WorkoutApp < Sinatra::Base
     redirect '/login' unless logged_in?
 
     # Fetch the user's data
+    # ...
+  end
+end
