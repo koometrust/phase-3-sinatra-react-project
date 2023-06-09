@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
   get '/login' do
     erb :login
   end
+
   # Retrieve all users
   get "/users" do
     users = User.all
@@ -35,6 +36,4 @@ class ApplicationController < Sinatra::Base
     user.destroy
     { message: "User deleted successfully" }.to_json
   end
-
-
 end
