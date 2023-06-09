@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <!-- Add your CSS stylesheets and JavaScript files here -->
+  <!-- For example, you can include Bootstrap for styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Your Dashboard, <%= user.name %>!</h1>
+    <p>Here's some information about your account:</p>
+    <ul>
+      <li><strong>Name:</strong> <%= user.name %></li>
+      <li><strong>Email:</strong> <%= user.email %></li>
+      <!-- Add more user information or customize as needed -->
+    </ul>
+
+    <!-- Add interactive components or additional sections to your dashboard -->
+    <!-- For example, you can display a list of user's tasks or recent activities -->
+    <h2>Your Tasks:</h2>
+    <ul>
+      <% user.tasks.each do |task| %>
+        <li><%= task.title %></li>
+      <% end %>
+    </ul>
+
+    <!-- Add logout functionality -->
+    <form action="/logout" method="POST">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
+
+  <!-- Add your JavaScript code or scripts here if necessary -->
+
+</body>
+</html>
