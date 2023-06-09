@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require_relative 'application_controller'
+
 
 # Require your model files
 require_relative '../models/user'
@@ -75,4 +77,76 @@ get '/dashboard' do
 
   # Pass the user's data to the dashboard view
   erb :dashboard, locals: { user: user }
+end
+
+# Create a new workout
+get '/workouts/new' do
+  erb :workout_form, locals: { workout: nil, errors: nil }
+end
+
+post '/workouts' do
+  workout = Workout.new(name: params[:name], description: params[:description])
+
+  if workout.save
+    redirect '/workouts'
+  else
+    erb :workout_form, locals: { workout: workout, errors: workout.errors.full_messages }
+  end
+end
+
+# Edit an existing workout
+get '/workouts/:id/edit' do |id|
+  workout = Workout.find_by(id: id)
+
+  if workout
+    erb :workout_form, locals: { workout: workout, errors: nil }
+  else
+    redirect '/workouts'
+  end
+end
+
+put '/workouts/:id' do |id|
+  workout = Workout.find_by(id: id)
+
+  if workout
+    workout.name = params[:name]
+    workout.description = params[:description]
+
+    if workout.save
+      redirect '/workouts'
+    else
+      erb :workout_form, locals: { workout: workout, errors: workout.errors.full_messages }
+    end
+  else
+    redirect '/workouts'
+  end
+end
+
+# Delete a workout
+delete '/workouts/:id' do |id|
+  workout = Workout.find_by(id: id)
+
+  if workout
+    workout.destroy
+  end
+
+  redirect '/workouts'
+end
+
+# View all workouts
+get '/workouts' do
+  @workouts = Workout.all
+  erb :workouts
+end
+
+# View exercise logs for a specific workout
+get '/workouts/:id' do |id|
+  workout = Workout.find_by(id: id)
+
+  if workout
+    @exercises = workout.exercises
+    erb :exercise_logs, locals: { workout: workout }
+  else
+    redirect '/workouts'
+  end
 end

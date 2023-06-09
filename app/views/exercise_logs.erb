@@ -1,0 +1,13 @@
+<h1>Exercise Logs for <%= workout.name %></h1>
+
+<% if @exercises.empty? %>
+  <p>No exercise logs available.</p>
+<% else %>
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li><%= exercise.name %> - <%= exercise.duration %> minutes</li>
+    <% end %>
+  </ul>
+<% end %>
+
+<a href="/workouts">Back to All Workouts</a>

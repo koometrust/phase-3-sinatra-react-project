@@ -1,0 +1,16 @@
+<h1>All Workouts</h1>
+
+<ul>
+  <% @workouts.each do |workout| %>
+    <li>
+      <%= workout.name %> - <%= workout.description %>
+      <a href="/workouts/<%= workout.id %>/edit">Edit</a>
+      <form action="/workouts/<%= workout.id %>" method="POST" style="display: inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </li>
+  <% end %>
+</ul>
+
+<a href="/workouts/new">Create New Workout</a>
