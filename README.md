@@ -58,7 +58,6 @@ Implement the desired features and UI enhancements to complete the project.
 # Conclusion
 The Workout App provides a comprehensive solution for users to track their workouts and exercises. It offers flexibility in managing workout sessions, adding exercises, and monitoring progress. By combining a robust backend API with a user-friendly React frontend, the app delivers a seamless user experience.
 
-Feel free to customize the app further and add additional features based on your project requirements and preferences. Good luck with your project!
 
 
 
