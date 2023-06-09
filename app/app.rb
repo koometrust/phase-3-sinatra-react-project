@@ -69,11 +69,15 @@ class WorkoutApp < Sinatra::Base
   end
 
   # Render the dashboard
-  get '/dashboard' do
-    # Ensure that the user is logged in
-    redirect '/login' unless logged_in?
+get '/dashboard' do
+  # Ensure that the user is logged in
+  redirect '/login' unless logged_in?
 
-    # Fetch the user's data
-    # ...
-  end
+  # Fetch the user's data from the database
+  user = User.find(session[:user_id])
+
+  # Pass the user's data to the dashboard view
+  erb :dashboard, locals: { user: user }
+end
+
 end
