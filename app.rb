@@ -32,7 +32,7 @@ class WorkoutApp < Sinatra::Base
 
   # Render the registration form
   get '/register' do
-    erb :register
+    erb :'controllers/views/register.erb.erb'
   end
 
   # Handle registration form submission
@@ -48,9 +48,10 @@ class WorkoutApp < Sinatra::Base
       redirect '/dashboard' # Redirect to the user's dashboard
     else
       # Handle validation errors
-      erb :register, locals: { errors: user.errors.full_messages }
+      erb :'controllers/views/register.erb.erb', locals: { errors: user.errors.full_messages }
     end
   end
+  
 
   # Handle logout
   get '/logout' do

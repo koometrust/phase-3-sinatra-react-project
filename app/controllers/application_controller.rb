@@ -43,7 +43,7 @@ class ApplicationController < Sinatra::Base
 
   # Render the registration form
   get '/register' do
-    erb :register
+    erb :'register.erb'
   end
 
   # Handle registration form submission

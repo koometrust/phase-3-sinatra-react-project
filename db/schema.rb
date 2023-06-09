@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2023_06_08_124430) do
 
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration_in_minutes"
+    t.integer "calories_burned"
+    t.string "intensity"
+    t.bigint "workout_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["workout_id"], name: "index_exercises_on_workout_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name", null: false
     t.integer "age"
@@ -21,6 +32,15 @@ ActiveRecord::Schema.define(version: 2023_06_08_124430) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "date"
+    t.integer "duration_in_minutes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end
